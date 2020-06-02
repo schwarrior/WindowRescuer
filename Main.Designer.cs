@@ -28,13 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnRescueWindows = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnRescueWindows
+            // 
+            this.btnRescueWindows.Location = new System.Drawing.Point(291, 236);
+            this.btnRescueWindows.Name = "btnRescueWindows";
+            this.btnRescueWindows.Size = new System.Drawing.Size(658, 231);
+            this.btnRescueWindows.TabIndex = 0;
+            this.btnRescueWindows.Text = "Rescue Windows";
+            this.btnRescueWindows.UseVisualStyleBackColor = true;
+            this.btnRescueWindows.Click += new System.EventHandler(this.btnRescueWindows_Click);
+            // 
+            // Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1228, 837);
+            this.Controls.Add(this.btnRescueWindows);
+            this.Name = "Main";
+            this.Text = "Off Screen Window Rescuer";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnRescueWindows;
     }
 }
 
