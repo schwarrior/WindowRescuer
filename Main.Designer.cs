@@ -28,34 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnRescueWindows = new System.Windows.Forms.Button();
+            this.btnRescueWindow = new System.Windows.Forms.Button();
+            this.lbWindows = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // btnRescueWindows
+            // btnRescueWindow
             // 
-            this.btnRescueWindows.Location = new System.Drawing.Point(291, 236);
-            this.btnRescueWindows.Name = "btnRescueWindows";
-            this.btnRescueWindows.Size = new System.Drawing.Size(658, 231);
-            this.btnRescueWindows.TabIndex = 0;
-            this.btnRescueWindows.Text = "Rescue Windows";
-            this.btnRescueWindows.UseVisualStyleBackColor = true;
-            this.btnRescueWindows.Click += new System.EventHandler(this.btnRescueWindows_Click);
+            this.btnRescueWindow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRescueWindow.Location = new System.Drawing.Point(26, 1026);
+            this.btnRescueWindow.Name = "btnRescueWindow";
+            this.btnRescueWindow.Size = new System.Drawing.Size(2411, 79);
+            this.btnRescueWindow.TabIndex = 0;
+            this.btnRescueWindow.Text = "Rescue Selected Window";
+            this.btnRescueWindow.UseVisualStyleBackColor = true;
+            this.btnRescueWindow.Click += new System.EventHandler(this.btnRescueWindows_Click);
+            // 
+            // lbWindows
+            // 
+            this.lbWindows.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbWindows.FormattingEnabled = true;
+            this.lbWindows.ItemHeight = 37;
+            this.lbWindows.Location = new System.Drawing.Point(26, 27);
+            this.lbWindows.Name = "lbWindows";
+            this.lbWindows.Size = new System.Drawing.Size(2407, 929);
+            this.lbWindows.TabIndex = 1;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 837);
-            this.Controls.Add(this.btnRescueWindows);
+            this.ClientSize = new System.Drawing.Size(2487, 1146);
+            this.Controls.Add(this.lbWindows);
+            this.Controls.Add(this.btnRescueWindow);
             this.Name = "Main";
             this.Text = "Off Screen Window Rescuer";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnRescueWindows;
+        private System.Windows.Forms.Button btnRescueWindow;
+        private System.Windows.Forms.ListBox lbWindows;
     }
 }
 
