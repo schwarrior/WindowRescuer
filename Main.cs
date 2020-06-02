@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,17 @@ namespace OffScreenWindowRescuer
                 Console.WriteLine("{0}: {1}", handle, title);
                 sb.AppendFormat("{0}: {1}\n", handle, title);
             }
-            MessageBox.Show(sb.ToString());
+
+            //MessageBox.Show(sb.ToString());
+            
+            //var winForms = Application.OpenForms;
+            //var currentWindowHandle = winForms[0].Handle;
+            
+            var thisProcess = Process.GetCurrentProcess();
+            var thisWindowHandle = thisProcess.MainWindowHandle;
+            var thisWindowRect = new WindowMover.Rect();
+            WindowMover.GetWindowRect(thisWindowHandle, ref thisWindowRect);
+            Console.WriteLine();
         }
     }
 }
