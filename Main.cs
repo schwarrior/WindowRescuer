@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OffScreenWindowRescuer
@@ -31,37 +25,37 @@ namespace OffScreenWindowRescuer
         private void LoadWindows()
         {
             lbWindows.Items.Clear();
-            var windows = OpenWindowGetter.GetOpenWindows();
+            var windows = WindowTools.GetOpenWindows();
             foreach (KeyValuePair<IntPtr, string> window in windows)
             {
                 IntPtr handle = window.Key;
                 string title = window.Value;
-
-                //Console.WriteLine("{0}: {1}", handle, title);
-                //var windowItem = title;
-
                 lbWindows.Items.Add(window);
             }
         }
 
         private void RescueWindow()
         {
-            var r = new WindowMover.Rect();
+            var r = new SimpleRect();
             var thisWindowHandle = this.GetCurrentWindowInfo(ref r);
 
             var selWindow = lbWindows.SelectedItem as Nullable<KeyValuePair<IntPtr, string>>;
             if (!selWindow.HasValue) return;
             var w = selWindow.Value;
             var h = w.Key;
-            WindowMover.MoveWindow(h, r.Left + 10, r.Top + 10, this.Width, this.Height, true);
+            //first move might not fit new monitor, if scaling is different
+            WindowTools.MoveWindow(h, r.Left + 30, r.Top + 30, this.Width, this.Height, true);
+            //re-move with current monitor scale
+            WindowTools.MoveWindow(h, r.Left + 30, r.Top + 30, this.Width, this.Height, true);
+            WindowTools.SetForegroundWindow(h);
         }
 
-        private IntPtr GetCurrentWindowInfo(ref WindowMover.Rect thisWindowRect)
+        private IntPtr GetCurrentWindowInfo(ref SimpleRect thisWindowRect)
         {
             var thisProcess = Process.GetCurrentProcess();
             var thisWindowHandle = thisProcess.MainWindowHandle;
-            thisWindowRect = new WindowMover.Rect();
-            WindowMover.GetWindowRect(thisWindowHandle, ref thisWindowRect);
+            thisWindowRect = new SimpleRect();
+            WindowTools.GetWindowRect(thisWindowHandle, ref thisWindowRect);
             return thisWindowHandle;
         }
     }

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace OffScreenWindowRescuer
 {
     using HWND = IntPtr;
 
-    /// <summary>Contains functionality to get all the open windows.</summary>
-    /// <remarks>https://stackoverflow.com/questions/7268302/get-the-titles-of-all-open-windows</remarks>
-    public static class OpenWindowGetter
+    /// <summary>Contains functionality to get all the open windows, set new position and activate.</summary>
+    public static class WindowTools
     {
         /// <summary>Returns a dictionary that contains the handle and title of all the open windows.</summary>
         /// <returns>A dictionary that contains the handle and title of all the open windows.</returns>
@@ -55,5 +52,14 @@ namespace OffScreenWindowRescuer
 
         [DllImport("USER32.DLL")]
         private static extern IntPtr GetShellWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hwnd, ref SimpleRect rectangle);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
     }
 }
