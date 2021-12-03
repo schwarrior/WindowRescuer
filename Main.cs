@@ -58,5 +58,10 @@ namespace OffScreenWindowRescuer
             WindowTools.GetWindowRect(thisWindowHandle, ref thisWindowRect);
             return thisWindowHandle;
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadWindows();
+        }
     }
 }
